@@ -25,7 +25,7 @@ public class Program {
 
     static void count(int firstNumber, int secondNumber) throws InvalidParameterException{
         if (secondNumber < firstNumber)
-            throw new InvalidParameterException("Error: the second parameter must be higher than the first");
+            throw new InvalidParameterException("Error: the second parameter must be greater than the first");
 
         int countResult = secondNumber - firstNumber;
         for (int i=1; i<=countResult; i++)
