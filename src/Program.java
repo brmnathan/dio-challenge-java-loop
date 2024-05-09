@@ -3,15 +3,32 @@ import java.util.Scanner;
 public class Program {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int firstNumber = scanner.nextInt();
-        int secondNumber = scanner.nextInt();
+        boolean parametersAreValid = false;
 
-        for (int i=1; i<=count(firstNumber,secondNumber); i++) {
-            System.out.println("Printing number " + i);
+        while (!parametersAreValid) {
+            System.out.print("First parameter: ");
+            int firstNumber = scanner.nextInt();
+            System.out.print("Second parameter: ");
+            int secondNumber = scanner.nextInt();
+
+            try {
+                count(firstNumber, secondNumber);
+                parametersAreValid = true;
+            }
+            catch (InvalidParameterException e) {
+                System.out.println(e.getMessage());
+            }
         }
+
+        scanner.close();
     }
 
-    static Integer count(int firstNumber, int secondNumber) {
-        return secondNumber - firstNumber;
+    static void count(int firstNumber, int secondNumber) throws InvalidParameterException{
+        if (secondNumber < firstNumber)
+            throw new InvalidParameterException("Error: the second parameter must be higher than the first");
+
+        int countResult = secondNumber - firstNumber;
+        for (int i=1; i<=countResult; i++)
+            System.out.println("Printing number " + i);
     }
 }
